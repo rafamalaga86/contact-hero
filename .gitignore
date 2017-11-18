@@ -1,0 +1,6 @@
+/scripts
+*-journal
+phalcon
+cache/*
+!cache/.gitkeep 
+*sublime*

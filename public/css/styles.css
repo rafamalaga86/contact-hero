@@ -1,0 +1,185 @@
+
+/* GENERAL */
+
+body {
+  min-height: 30rem; /* Can be removed; just added for demo purposes */
+
+  /* Global CSS Vars */
+  --dark-grey: #343a40;
+
+  --blue: #416cde;
+  --red: #f16571;
+  --brown: #a3825f;
+  --brown-grey: #4e4e4e;
+  --pink: #deaeae;
+  --grey: #c1cfcc;
+  --orange: #f04e27;
+  --aqua-green: #49c5a1;
+  --aqua-green-darker: #3faf8f;
+  --grey-blue: #a8cef3;
+  --dark-pink: #cf9aae;
+  --green: #1e6464;
+  --green-grey: #91b8ae;
+
+  background-color: var(--dark-grey);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+a {
+  color: rgba(255,255,255,.7);
+}
+
+a:hover {
+  color: rgba(255,255,255,.98);
+  text-decoration: none;
+}
+
+.modal-content {
+  background-color: var(--dark-grey) !important;
+}
+
+.modal-content textarea, .modal-content textarea:focus {
+  background-color: rgba(255,255,255,.9);
+}
+
+.modal-header, .modal-footer {
+  border: none;
+}
+
+.modal .close {
+  color: white;
+  text-shadow: none;
+  cursor: pointer;
+}
+
+.navbar {
+  margin-bottom: 0;
+  background-color: rgba(255,255,255,.9);
+}
+
+
+.navbar-brand {
+  margin-right: auto;
+  color: black;
+  margin-left: 15px;
+}
+
+.navbar .row{
+  width: 100%;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+/*
+.btn-primary {
+  background-color: rgba(255,255,255,1);
+  color: rgba(0, 0, 0, 1);
+}
+
+.btn-primary:hover {
+  background-color: rgba(210,210,210, 1);
+  color: black;
+}
+*/
+
+.btn-default {
+  background-color: var(--blue);
+  color: white;
+}
+
+main {
+  min-height: 50rem; /* For debugging purposes */
+  padding-top: 15px;
+}
+
+.grid {
+  margin: 0 auto;
+}
+
+.card {
+  /* float: left; */
+  /* width: 33.333%; */
+  width: 262px;
+  margin-bottom: 2rem;
+  border: 0;
+  overflow: hidden;
+}
+
+.card:nth-child(10n+1) {background-color: var(--red);}
+.card:nth-child(10n+2) {background-color: var(--brown);}
+.card:nth-child(10n+3) {background-color: var(--pink);}
+.card:nth-child(10n+4) {background-color: var(--grey);}
+.card:nth-child(10n+5) {background-color: var(--orange);}
+.card:nth-child(10n+6) {background-color: var(--aqua-green);}
+.card:nth-child(10n+7) {background-color: var(--grey-blue);}
+.card:nth-child(10n+8) {background-color: var(--dark-pink);}
+.card:nth-child(10n+9) {background-color: var(--green);}
+.card:nth-child(10n+10) {background-color: var(--green-grey);}
+
+.card-contactPicture {
+  width: 100%;
+}
+
+.card .btn {
+  background-color: var(--blue);
+}
+
+
+.card-highlight {
+  width: 100%;
+  background: var(--blue);
+  color: white;
+  text-align: center;
+  font-size: 20px;
+  height: 70px;
+  line-height: 70px;
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: 10px;
+}
+
+.card-content {
+  padding: .75rem;
+}
+
+.card-contactTitle {
+  color: white;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.card-contactTitle.date {
+  font-size: 12px;
+}
+
+.card .card-text {
+  margin-top: 20px;
+  font-size: 15px;
+}
+
+footer {
+  background: black;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+footer a {
+  color: var(--blue);
+}
+
+
+/* FORMS */
+
+input {
+  width: 100%;
+}
+
+.container {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+section.title {
+  margin: 30px 0;
+}
