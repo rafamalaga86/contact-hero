@@ -29,7 +29,7 @@
       </div>
     </div>
     <main class="container">
-      {{ flashMessage is defined ? flashMessage : '' }}
+      {{ flashSession.output() ? flashSession.output() : '' }}
       {% block main %}{% endblock %}
     </main>
     <footer>

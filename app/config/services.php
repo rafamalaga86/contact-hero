@@ -7,6 +7,8 @@ use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
 use Phalcon\Mvc\Model\Metadata\Memory as MetaDataAdapter;
 use Phalcon\Session\Adapter\Files as SessionAdapter;
 use Phalcon\Flash\Direct as Flash;
+use Phalcon\Flash\Session as FlashSession;
+use \Phalcon\Mvc\Dispatcher as PhDispatcher;
 
 /**
  * Shared configuration service
@@ -103,6 +105,18 @@ $di->set('flash', function () {
 });
 
 /**
+ * Register the session flash Session service with the Twitter Bootstrap classes
+ */
+$di->set('flashSession', function () {
+    return new FlashSession([
+        'error'   => 'alert alert-danger',
+        'success' => 'alert alert-success',
+        'notice'  => 'alert alert-info',
+        'warning' => 'alert alert-warning'
+    ]);
+});
+
+/**
  * Start the session the first time some component request the session service
  */
 $di->setShared('session', function () {
@@ -111,3 +125,37 @@ $di->setShared('session', function () {
 
     return $session;
 });
+
+
+/**
+ * Handle 404
+ */
+$di->set(
+    'dispatcher',
+    function () use ($di) {
+
+        $evManager = $di->getShared('eventsManager');
+
+        $evManager->attach(
+            "dispatch:beforeException",
+            function ($event, $dispatcher, $exception) {
+                switch ($exception->getCode()) {
+                    case PhDispatcher::EXCEPTION_HANDLER_NOT_FOUND:
+                    case PhDispatcher::EXCEPTION_ACTION_NOT_FOUND:
+                        $dispatcher->forward(
+                            [
+                                'controller' => 'error',
+                                'action'     => 'showError',
+                                'params'     => [404]
+                            ]
+                        );
+                        return false;
+                }
+            }
+        );
+        $dispatcher = new PhDispatcher();
+        $dispatcher->setEventsManager($evManager);
+        return $dispatcher;
+    },
+    true
+);

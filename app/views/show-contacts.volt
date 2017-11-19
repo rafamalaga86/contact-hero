@@ -4,7 +4,7 @@
 
   <div class="grid">
     {% for contact in contacts %}
-      <div class="card" data-contact-id="{{ contact['id']|e }}">
+      <div class="card card-{{ contact['id']|e }}" data-contact-id="{{ contact['id']|e }}">
         <img class="card-contactPicture" src="/img/{{ contact['picture']|e }}" alt="{{ contact['firstName']|e }}">
         <div class="card-highlight">{{ contact['firstName']|e }}</div>
         <div class="card-content">
@@ -13,7 +13,7 @@
             <p class="card-text">{{ contact['description']|e }}</p>
             <div class="card-contactTitle date">Created at: {{ contact['createdAt']|e }}</div>
             <div class="btn-container">
-              <button class="btn btn-default">Delete this contact</button>
+              <button class="btn btn-default btn-delete">Delete this contact</button>
             </div>
         </div>
       </div>

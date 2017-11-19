@@ -58,6 +58,7 @@ class ContactsMigration_100 extends Migration
                     'picture',
                     [
                         'type'    => Column::TYPE_VARCHAR,
+                        'notNull' => true,
                         'size'    => 255,
                     ]
                 ),
@@ -76,6 +77,7 @@ class ContactsMigration_100 extends Migration
             ],
         ]);
 
+
         $shortLoremIpsum = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do'
             . ' eiusmod tempor incididunt ut labore et dolore magna aliqua.';
 
@@ -91,19 +93,10 @@ class ContactsMigration_100 extends Migration
             . 'in culpa qui officia deserunt mollit anim id est laborum.';
 
         self::$_connection->insertAsDict('contacts', [
-            'firstName'   => 'Ana',
-            'lastName'    => 'Jimenez',
-            'email'       => 'ana@jimenez.es',
-            'picture'     => 'ana.png',
-            'description' => $mediumLoremIpsum,
-            'createdAt'   => '2013-12-01 10:32:05',
-        ]);
-
-        self::$_connection->insertAsDict('contacts', [
             'firstName'   => 'Cindy',
             'lastName'    => 'Sheppard',
             'email'       => 'cindy@normandy.com',
-            'picture'     => 'cyndi.png',
+            'picture'     => '2.png',
             'description' => $mediumLoremIpsum,
             'createdAt'   => '2013-12-01 10:32:05',
         ]);
@@ -112,7 +105,7 @@ class ContactsMigration_100 extends Migration
             'firstName'   => 'Frank',
             'lastName'    => 'Peterson',
             'email'       => 'blabla@peterson.com',
-            'picture'     => 'frank.png',
+            'picture'     => '3.png',
             'description' => $longLoremIpsum,
             'createdAt'   => '2013-12-01 10:32:05',
         ]);
@@ -121,7 +114,7 @@ class ContactsMigration_100 extends Migration
             'firstName'   => 'Graham',
             'lastName'    => 'Grahamson',
             'email'       => 'dfgewtr@wrtedfgsd.com',
-            'picture'     => 'graham.png',
+            'picture'     => '4.png',
             'description' => $shortLoremIpsum,
             'createdAt'   => '2013-06-01 10:32:05',
         ]);
@@ -129,8 +122,8 @@ class ContactsMigration_100 extends Migration
         self::$_connection->insertAsDict('contacts', [
             'firstName'   => 'Jan',
             'lastName'    => 'Strapovska',
-            'email'       => 'jan@jimeno.com',
-            'picture'     => 'jan.png',
+            'email'       => 'jan@Strapovska.com',
+            'picture'     => '5.png',
             'description' => $mediumLoremIpsum,
             'createdAt'   => '2017-12-01 10:32:05',
         ]);
@@ -139,16 +132,25 @@ class ContactsMigration_100 extends Migration
             'firstName'   => 'Jana',
             'lastName'    => 'Muller',
             'email'       => 'asfd@asdf.es',
-            'picture'     => 'cristina.png',
+            'picture'     => '6.png',
             'description' => $shortLoremIpsum,
             'createdAt'   => '2011-10-07 14:12:50',
         ]);
 
         self::$_connection->insertAsDict('contacts', [
+            'firstName'   => 'Ana',
+            'lastName'    => 'Jimenez',
+            'email'       => 'ana@jimenez.es',
+            'picture'     => '1.png',
+            'description' => $mediumLoremIpsum,
+            'createdAt'   => '2013-12-01 10:32:05',
+        ]);
+
+        self::$_connection->insertAsDict('contacts', [
             'firstName'   => 'Jasmina',
             'lastName'    => 'Petr',
-            'email'       => 'jasmina@jimeno.com',
-            'picture'     => 'jasmina.png',
+            'email'       => 'jasmina@petr.com',
+            'picture'     => '7.png',
             'description' => $longLoremIpsum,
             'createdAt'   => '2017-12-01 10:32:05',
         ]);
@@ -156,8 +158,8 @@ class ContactsMigration_100 extends Migration
         self::$_connection->insertAsDict('contacts', [
             'firstName'   => 'John',
             'lastName'    => 'Smith',
-            'email'       => 'pedro@jimeno.com',
-            'picture'     => 'john.png',
+            'email'       => 'the@unique.com',
+            'picture'     => '8.png',
             'description' => $shortLoremIpsum,
             'createdAt'   => '2017-12-01 10:32:05',
         ]);
@@ -165,8 +167,8 @@ class ContactsMigration_100 extends Migration
         self::$_connection->insertAsDict('contacts', [
             'firstName'   => 'Juan',
             'lastName'    => 'García',
-            'email'       => 'pedro@jimeno.com',
-            'picture'     => 'juan.png',
+            'email'       => 'notacommon@name.com',
+            'picture'     => '9.png',
             'description' => $longLoremIpsum,
             'createdAt'   => '2017-12-01 10:32:05',
         ]);
@@ -174,8 +176,8 @@ class ContactsMigration_100 extends Migration
         self::$_connection->insertAsDict('contacts', [
             'firstName'   => 'Laura',
             'lastName'    => 'Ruiz',
-            'email'       => 'pedro@jimeno.com',
-            'picture'     => 'laura.png',
+            'email'       => 'president@evil.com',
+            'picture'     => '10.png',
             'description' => $mediumLoremIpsum,
             'createdAt'   => '2013-12-01 10:32:05',
         ]);
@@ -183,8 +185,8 @@ class ContactsMigration_100 extends Migration
         self::$_connection->insertAsDict('contacts', [
             'firstName'   => 'Maria',
             'lastName'    => 'Stokarova',
-            'email'       => 'pedro@jimeno.com',
-            'picture'     => 'maria.png',
+            'email'       => 'itsme@hotmail.com',
+            'picture'     => '11.png',
             'description' => $shortLoremIpsum,
             'createdAt'   => '2013-12-21 05:32:05',
         ]);
@@ -192,8 +194,8 @@ class ContactsMigration_100 extends Migration
         self::$_connection->insertAsDict('contacts', [
             'firstName'   => 'Miranda',
             'lastName'    => 'Lawson',
-            'email'       => 'pedro@jimeno.com',
-            'picture'     => 'miranda.png',
+            'email'       => 'mlawson@normandy.com',
+            'picture'     => '12.png',
             'description' => $shortLoremIpsum,
             'createdAt'   => '2013-12-01 10:32:05',
         ]);
@@ -201,8 +203,8 @@ class ContactsMigration_100 extends Migration
         self::$_connection->insertAsDict('contacts', [
             'firstName'   => 'Peter',
             'lastName'    => 'Bros',
-            'email'       => 'pedro@jimeno.com',
-            'picture'     => 'peter.png',
+            'email'       => 'peter@mushroomkingdom.com',
+            'picture'     => '13.png',
             'description' => $longLoremIpsum,
             'createdAt'   => '2013-12-01 10:32:05',
         ]);
@@ -210,8 +212,8 @@ class ContactsMigration_100 extends Migration
         self::$_connection->insertAsDict('contacts', [
             'firstName'   => 'Rita',
             'lastName'    => 'Thumeyer',
-            'email'       => 'pedro@jimeno.com',
-            'picture'     => 'rita.png',
+            'email'       => 'rita@live.com',
+            'picture'     => '14.png',
             'description' => $mediumLoremIpsum,
             'createdAt'   => '2013-12-01 10:32:05',
         ]);
@@ -219,8 +221,8 @@ class ContactsMigration_100 extends Migration
         self::$_connection->insertAsDict('contacts', [
             'firstName'   => 'Sandra',
             'lastName'    => 'Bennewitz',
-            'email'       => 'pedro@jimeno.com',
-            'picture'     => 'sandra.png',
+            'email'       => 'sandra@thatsme.com',
+            'picture'     => '15.png',
             'description' => $shortLoremIpsum,
             'createdAt'   => '2013-02-01 10:32:05',
         ]);
@@ -228,8 +230,8 @@ class ContactsMigration_100 extends Migration
         self::$_connection->insertAsDict('contacts', [
             'firstName'   => 'Sascha',
             'lastName'    => 'Gloel',
-            'email'       => 'pedro@jimeno.com',
-            'picture'     => 'sascha.png',
+            'email'       => 'sgloel@reachhero.com',
+            'picture'     => '16.png',
             'description' => $shortLoremIpsum,
             'createdAt'   => '2014-12-01 10:59:05',
         ]);
@@ -237,8 +239,8 @@ class ContactsMigration_100 extends Migration
         self::$_connection->insertAsDict('contacts', [
             'firstName'   => 'Sebastian',
             'lastName'    => 'Silva',
-            'email'       => 'pedro@jimeno.com',
-            'picture'     => 'sebastian.png',
+            'email'       => 'mmmmmmmm@mmmmm.com',
+            'picture'     => '17.png',
             'description' => $longLoremIpsum,
             'createdAt'   => '2013-12-01 10:32:05',
         ]);
@@ -246,8 +248,8 @@ class ContactsMigration_100 extends Migration
         self::$_connection->insertAsDict('contacts', [
             'firstName'   => 'Tania',
             'lastName'    => 'Van Houten',
-            'email'       => 'pedro@jimeno.com',
-            'picture'     => 'tania.png',
+            'email'       => 'tania@vanhoute.com',
+            'picture'     => '18.png',
             'description' => $mediumLoremIpsum,
             'createdAt'   => '2013-12-01 10:32:05',
         ]);
@@ -256,9 +258,18 @@ class ContactsMigration_100 extends Migration
             'firstName'   => 'Volker',
             'lastName'    => 'Doblas',
             'email'       => '1234@hotmal.com',
-            'picture'     => 'volker.png',
+            'picture'     => '19.png',
             'description' => $longLoremIpsum,
             'createdAt'   => '2013-12-01 10:32:05',
+        ]);
+
+        self::$_connection->insertAsDict('contacts', [
+            'firstName'   => 'Susanne',
+            'lastName'    => 'Dengler',
+            'email'       => 'susi@gmail.com',
+            'picture'     => '20.png',
+            'description' => $shortLoremIpsum,
+            'createdAt'   => '2017-12-01 10:32:05',
         ]);
     }
 

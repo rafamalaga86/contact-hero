@@ -8,32 +8,58 @@ class ContactsController extends ControllerBase
     {
         $allContacts = Contacts::find();
 
-        $this->view->setVar('flashMessage', $this->flashSession->output());
         $this->view->setVar('contacts', $allContacts->toArray());
-
         $this->view->pick('show-contacts');
     }
 
     public function newAction()
     {
+        $form = new ContactForm();
+        if ($this->request->isPost() && $form->isValid($this->request->getPost())) {
+            // Create model
+            $contact = new Contacts($this->request->getPost());
+            // Assign an image at random
+            $contact->picture = rand(1, 20) . '.png';
 
-        if ($this->request->isPost()) {
-            if ($this->security->checkToken()) {
-                // CSRF Token invalid
-                
-                $this->flashSession->error('CSRF Token invalid');
-                return $this->response->redirect('contacts/showAll')->sendHeaders();
+            if ($contact->create()) {
+                $this->flashSession->success('Great, a new contact was created!');
             } else {
-                // CSRF Token invalid
-                $this->flashSession->error('CSRF Token invalid');
-                return $this->response->redirect('contacts/showAll')->sendHeaders();
+                $this->flashSession->error('Hmmmm, something went wrong.');
             }
+        }
+        // Send posted data errors back if they exists
+        foreach ($form->getMessages() as $message) {
+            $this->flashSession->error($message);
+        }
+
+        $this->view->setVar('form', $form);
+        $this->view->pick('add-contact');
+    }
+
+    public function updateAction($contactId)
+    {
+        $contact = Contacts::findFirst($contactId);
+        if (!$contact) {
+            $this->dispatcher->forward(
+                [
+                "controller" => "error",
+                "action"     => "showError",
+                "params"     => [404]
+                ]
+            );
+        }
+        $this->view->setVar('form', $form);
+        $this->view->pick('update-contact');
+    }
+
+    // This will be only accessed with ajax
+    public function deleteAction($contactId)
+    {
+        $contact = Contacts::findFirst($contactId);
+        if ($contact && $contact->delete()) {
+            $this->response->setStatusCode(200, "OK");
         } else {
-            $this->view->setVar('csrf', [
-                'name'  => $this->security->getTokenKey(),
-                'token' => $this->security->getToken(),
-            ]);
-            $this->view->pick('new-contact');
+            $this->response->setStatusCode(404, "Resource not found");
         }
     }
 }

@@ -9,6 +9,30 @@ $(document).ready(function(){
     // columnWidth: 50
   });
 
+  // AJAX
+  // =======================================================
+
+  //-- Delete a contact
+  $('.card').on('click', '.btn-delete', function(){
+    var btn = $(this);
+    var id = btn.parents('.card').attr('data-contact-id');
+    jQuery.ajax({
+      method: 'DELETE',
+      url: '/contacts/' + id
+    })
+    .done(function(){
+      $grid.masonry('remove', $('.card-' + id)).masonry('layout');
+    })
+    .fail(function(){
+      btn.parent().parent().append('<div style="display: none;" class="delete-error alert alert-danger"><p>There was a problem!</p></div>');
+      btn.slideUp('fast', function(){
+        btn.parent().parent().find('.delete-error').slideDown('fast');
+      });
+      
+    });
+  });
+
+
 
 
   // Let's write something in the footer at random

@@ -39,7 +39,7 @@ class Contacts extends \Phalcon\Mvc\Model
     /**
      *
      * @var string
-     * @Column(type="string", length=255, nullable=true)
+     * @Column(type="string", length=255, nullable=false)
      */
     public $picture;
 
@@ -118,4 +118,5 @@ class Contacts extends \Phalcon\Mvc\Model
     {
         return parent::findFirst($parameters);
     }
+
 }

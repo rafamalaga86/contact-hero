@@ -1,6 +1,7 @@
-/scripts
-*-journal
 phalcon
+.DS_Store
 cache/*
+.phalcon/*
 !cache/.gitkeep 
+!.phalcon/.gitkeep
 *sublime*
