@@ -19,18 +19,21 @@
     <div class="navbar">
       <div class="container">
         <div class="row">
-          <div class="col col-md-5">
+          <div class="col-sm-5 d-flex">
             <a href="/" class="navbar-brand">Contacts Hero</a>
           </div>
-          <div class="col col-md-7 d-flex justify-content-end">
-            <a href="/contacts/new" class="menu-link btn btn-primary">Insert Contact</a>
+          <div class="col-sm-7 d-flex justify-content-center justify-content-sm-end">
+            <a href="/" class="menu-link">Home</a>
+            <a href="/contacts/new" class="btn btn-primary">Insert Contact</a>
           </div>
         </div>
       </div>
     </div>
-    <main class="container">
-      {{ flashSession.output() ? flashSession.output() : '' }}
-      {% block main %}{% endblock %}
+    <main>
+      <div class="container">
+        {{ flashSession.output() ? flashSession.output() : '' }}
+        {% block main %}{% endblock %}
+      </div>
     </main>
     <footer>
       <div class="container">

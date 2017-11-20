@@ -1,7 +1,10 @@
 phalcon
 .DS_Store
 cache/*
+log/
 .phalcon/*
 !cache/.gitkeep 
 !.phalcon/.gitkeep
+logs/
+.idea/
 *sublime*

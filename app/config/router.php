@@ -5,6 +5,13 @@ $di->set('router', function () {
     // Deactivate default routes
     $router = new \Phalcon\Mvc\Router(false);
 
+    // Handle 404
+    $router->notFound([
+        'controller' => 'error',
+        'action' => 'showError',
+        'params' => '404',
+    ]);
+
     $router->add('/', [
         'controller' => 'contacts',
         'action'     => 'showAll',

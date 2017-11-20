@@ -9,6 +9,7 @@ use Phalcon\Session\Adapter\Files as SessionAdapter;
 use Phalcon\Flash\Direct as Flash;
 use Phalcon\Flash\Session as FlashSession;
 use \Phalcon\Mvc\Dispatcher as PhDispatcher;
+use Phalcon\Logger\Adapter\File as FileAdapter;
 
 /**
  * Shared configuration service
@@ -128,34 +129,12 @@ $di->setShared('session', function () {
 
 
 /**
- * Handle 404
+ * Inject the logger and the file to log
  */
-$di->set(
-    'dispatcher',
-    function () use ($di) {
-
-        $evManager = $di->getShared('eventsManager');
-
-        $evManager->attach(
-            "dispatch:beforeException",
-            function ($event, $dispatcher, $exception) {
-                switch ($exception->getCode()) {
-                    case PhDispatcher::EXCEPTION_HANDLER_NOT_FOUND:
-                    case PhDispatcher::EXCEPTION_ACTION_NOT_FOUND:
-                        $dispatcher->forward(
-                            [
-                                'controller' => 'error',
-                                'action'     => 'showError',
-                                'params'     => [404]
-                            ]
-                        );
-                        return false;
-                }
-            }
-        );
-        $dispatcher = new PhDispatcher();
-        $dispatcher->setEventsManager($evManager);
-        return $dispatcher;
-    },
-    true
-);
+$di->set('logger', function () use ($di) {
+    $path = __DIR__ . '/../../logs';
+    if (!file_exists($path)) {
+        mkdir($path, 0777);
+    }
+    return new FileAdapter($path . '/log');
+});

@@ -72,6 +72,7 @@ class ContactsMigration_100 extends Migration
                     'createdAt',
                     [
                         'type' => Column::TYPE_DATETIME,
+                        'notNull'       => true,
                     ]
                 ),
             ],

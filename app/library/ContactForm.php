@@ -12,7 +12,7 @@ class ContactForm extends Form
 {
     public function initialize()
     {
-        // Add hidden inputs CSRF
+        // Add hidden input preventing CSRF attacks
         $csrfInput = new Hidden('csrf');
         $csrfInput->addValidator(new Identical([
             'value' => $this->security->getSessionToken(),
@@ -23,20 +23,24 @@ class ContactForm extends Form
 
         // Add text inputs
         $firstNameInput = new Text('firstName');
-        $firstNameInput->setFilters(['string', 'trim', 'striptags']);
+        $firstNameInput->setFilters(['string', 'trim', 'striptags']); // Prevents XSS attacks
         $firstNameInput->addValidator(new PresenceOf(['message' => 'The first name is required']));
         $this->add($firstNameInput);
 
         $lastNameInput = new Text('lastName');
-        $lastNameInput->setFilters(['string', 'trim', 'striptags']);
+        $lastNameInput->setFilters(['string', 'trim', 'striptags']); // Prevents XSS attacks
         $lastNameInput->addValidator(new PresenceOf(['message' => 'The last name is required']));
         $this->add($lastNameInput);
 
+        // Email is a input text field to be able to test validation
+        // Normally it would be of type 'email'
         $emailInput = new Text('email');
         $emailInput->setFilters(['email', 'striptags']);
         $emailInput->addValidator(new Email(['message' => 'The e-mail is not valid']));
         $this->add($emailInput);
 
-        $this->add(new TextArea('description'));
+        $descriptionInput = new TextArea('description');
+        $descriptionInput->setFilters(['string', 'trim', 'striptags']); // Prevents XSS attacks
+        $this->add($descriptionInput);
     }
 }

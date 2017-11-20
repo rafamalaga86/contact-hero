@@ -1,16 +1,16 @@
 {% extends 'templates/base.volt' %}
 
 {% block main %}
-  <div class="container">
+  <div class="container add-contact">
     <section class="title">
       <h1 class="text-center">Add a Contact</h1>
     </section>
     <section>
-      <form action="/contacts/new" method="POST">
+      <form class="container" action="/contacts/new" method="POST">
         {{ form.render('csrf', ['value': security.getToken()]) }}
 
         <div class="row">
-          <div class="col col-md-6">
+          <div class="col-md-6">
             <div class="form-group">
               <label>First Name: *</label>
               {{ form.render('firstName', ["class": "form-control", "placeholder": "John"]) }}
@@ -22,7 +22,7 @@
             <p>An image will be assigned for the contact at random</p>
           </div>
 
-          <div class="col col-md-6">
+          <div class="col-md-6">
             <div class="form-group">
               <label>Email: *</label>
               {{ form.render('email', ["class": "form-control", "placeholder": "john@doe.com"]) }}
